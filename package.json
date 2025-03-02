@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ericblade/quagga2": "^1.8.4",
+    "barcode-detector": "^3.0.1",
     "html5-qrcode": "^2.3.8",
     "next": "15.2.0",
     "react": "^19.0.0",
@@ -16,7 +18,9 @@
     "react-dnd-html5-backend": "^16.0.1",
     "react-dnd-touch-backend": "^16.0.1",
     "react-dom": "^19.0.0",
-    "react-zxing": "^2.1.0"
+    "react-qr-barcode-scanner": "^2.0.0",
+    "react-zxing": "^2.1.0",
+    "zbar.wasm": "^2.1.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
