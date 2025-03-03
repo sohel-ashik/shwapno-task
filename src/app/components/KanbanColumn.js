@@ -19,8 +19,11 @@ const KanbanColumn = ({ category, products, onDrop }) => {
         isOver ? 'bg-blue-50 border-2 border-blue-300' : ''
       }`}
     >
-      <h3 className="font-semibold text-lg mb-3 pb-2 border-b-2 border-gray-300">
-        {category} ({products.length})
+      <h3 className="font-semibold text-lg mb-3 pb-2 border-b-2 border-gray-200 flex items-center justify-between">
+        {category && <span className="text-gray-800">{category}</span>}
+        {products.length > 0 && (
+          <span className="bg-blue-500 text-white text-sm px-4 py-1 rounded-md">{products.length}</span>
+        )}
       </h3>
       
       <div className="overflow-y-auto flex-1 space-y-3 p-1">

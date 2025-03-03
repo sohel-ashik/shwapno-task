@@ -9,6 +9,7 @@ const BarcodeScanner = ({ onScanSuccess, onScanError }) => {
   const [decodedResult, setDecodedResult] = useState('');
   const [manualEntry, setManualEntry] = useState('');
   const [torchOn, setTorchOn] = useState(false);
+  const [processing, setProcessing] = useState(false);
   
   const scannerRef = useRef(null);
 
@@ -30,7 +31,7 @@ const BarcodeScanner = ({ onScanSuccess, onScanError }) => {
     setTorchOn(false);
   };
 
-  const handleScan = (err, result) => {
+  const handleScan = async (err, result) => {
     if (err) {
       console.log('Scan error:', err.message);
       // Only show errors that aren't just "not found" errors
@@ -41,17 +42,18 @@ const BarcodeScanner = ({ onScanSuccess, onScanError }) => {
       return;
     }
 
-    if (result) {
+    if (result && !processing) {
       console.log('Scan result:', result);
+      setProcessing(true);
       stopScanner();
       setDecodedResult(result.text);
-    }
-  };
-
-  const handleConfirmBarcode = () => {
-    if (decodedResult && onScanSuccess) {
-      console.log('Confirming barcode:', decodedResult);
-      onScanSuccess(decodedResult);
+      
+      // Directly call the success handler without confirmation
+      if (onScanSuccess) {
+        console.log('Processing barcode:', result.text);
+        await onScanSuccess(result.text);
+      }
+      setProcessing(false);
     }
   };
 
@@ -66,11 +68,20 @@ const BarcodeScanner = ({ onScanSuccess, onScanError }) => {
     setManualEntry(value);
   };
 
-  const handleManualEntrySubmit = (e) => {
+  const handleManualEntrySubmit = async (e) => {
     e.preventDefault();
-    if (manualEntry.trim()) {
+    if (manualEntry.trim() && !processing) {
+      setProcessing(true);
       setDecodedResult(manualEntry);
+      
+      // Directly call the success handler for manual entry
+      if (onScanSuccess) {
+        console.log('Processing manual barcode:', manualEntry);
+        await onScanSuccess(manualEntry);
+      }
+      
       setManualEntry('');
+      setProcessing(false);
     }
   };
 
@@ -80,13 +91,14 @@ const BarcodeScanner = ({ onScanSuccess, onScanError }) => {
 
   return (
     <div className="w-full max-w-md mx-auto bg-white rounded-lg shadow-md p-4">
-      <h2 className="text-xl font-bold mb-4 text-center">Barcode Scanner</h2>
+      {/* <h2 className="text-xl font-bold mb-4 text-center">Barcode Scanner</h2> */}
       
       {!decodedResult && !isScanning && (
         <div className="space-y-4">
           <button
             onClick={startScanner}
             className="w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none"
+            disabled={processing}
           >
             Scan Barcode
           </button>
@@ -108,10 +120,12 @@ const BarcodeScanner = ({ onScanSuccess, onScanError }) => {
               placeholder="Enter barcode manually"
               className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
               maxLength="13"
+              disabled={processing}
             />
             <button
               type="submit"
               className="py-2 px-4 bg-gray-600 text-white font-semibold rounded-lg shadow-md hover:bg-gray-700 focus:outline-none"
+              disabled={processing}
             >
               Enter
             </button>
@@ -159,12 +173,14 @@ const BarcodeScanner = ({ onScanSuccess, onScanError }) => {
             <button
               onClick={stopScanner}
               className="flex-1 py-2 px-4 bg-red-600 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 focus:outline-none"
+              disabled={processing}
             >
               Cancel
             </button>
             <button
               onClick={toggleTorch}
               className="flex-1 py-2 px-4 bg-gray-600 text-white font-semibold rounded-lg shadow-md hover:bg-gray-700 focus:outline-none"
+              disabled={processing}
             >
               {torchOn ? 'Turn Off Light' : 'Turn On Light'}
             </button>
@@ -179,17 +195,20 @@ const BarcodeScanner = ({ onScanSuccess, onScanError }) => {
           
           <div className="flex space-x-2">
             <button
-              onClick={handleConfirmBarcode}
-              className="flex-1 py-2 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 focus:outline-none"
-            >
-              Confirm
-            </button>
-            <button
               onClick={handleRetry}
-              className="flex-1 py-2 bg-gray-500 text-white font-semibold rounded-lg shadow-md hover:bg-gray-600 focus:outline-none"
+              className="w-full py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none"
+              disabled={processing}
             >
-              Retry
+              Scan Again
             </button>
+          </div>
+        </div>
+      )}
+      
+      {processing && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white p-4 rounded-lg shadow-lg">
+            <p className="text-center">Processing barcode...</p>
           </div>
         </div>
       )}

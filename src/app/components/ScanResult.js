@@ -43,11 +43,11 @@ const ScanResult = ({ barcode, onAddToInventory }) => {
         if (err.name === 'AbortError') {
           setError('Request timed out. Please try again.');
         } else {
-          setError('Failed to fetch product. Using test data instead.');
+          setError('Failed to fetch product. Please try again.');
         }
         
         // Use mock data on any error
-        createMockProduct(barcode);
+        // createMockProduct(barcode);
       } finally {
         setLoading(false);
       }
@@ -70,14 +70,14 @@ const ScanResult = ({ barcode, onAddToInventory }) => {
   };
 
   // Create a mock product for testing when API is down
-  const createMockProduct = (barcodeValue = barcode) => {
-    setProduct({
-      barcode: barcodeValue,
-      material: `MAT-${barcodeValue.substring(0, 6)}`,
-      description: `Test Product (Barcode: ${barcodeValue})`,
-      price: Math.floor(Math.random() * 100) + 1
-    });
-  };
+  // const createMockProduct = (barcodeValue = barcode) => {
+  //   setProduct({
+  //     barcode: barcodeValue,
+  //     material: `MAT-${barcodeValue.substring(0, 6)}`,
+  //     description: `Test Product (Barcode: ${barcodeValue})`,
+  //     price: Math.floor(Math.random() * 100) + 1
+  //   });
+  // };
 
   if (loading) {
     return (
