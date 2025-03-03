@@ -135,28 +135,23 @@ const BarcodeScanner = ({ onScanSuccess, onScanError }) => {
         <div className="relative">
           <div 
             ref={scannerRef}
-            className="w-full aspect-square bg-black rounded-lg overflow-hidden"
+            className="w-full"
           >
-            <BarcodeScannerComponent
-              onUpdate={handleScan}
-              torch={torchOn}
-              constraints={{
-                facingMode: "environment",
-                width: { ideal: 1280 },
-                height: { ideal: 720 },
-                aspectRatio: { ideal: 1 }
-              }}
-              style={{ width: '100%', height: '100%' }}
-            />
-            
-            {/* Scanning guide overlay */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <div className="w-64 h-48 border-2 border-red-500 rounded-lg">
-                <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-red-500 rounded-tl-lg"></div>
-                <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-red-500 rounded-tr-lg"></div>
-                <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-red-500 rounded-bl-lg"></div>
-                <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-red-500 rounded-br-lg"></div>
-              </div>
+            <div className="relative w-full h-full">
+              <BarcodeScannerComponent
+                onUpdate={handleScan}
+                torch={torchOn}
+                constraints={{
+                  facingMode: "environment",
+                  width: { ideal: 1280 },
+                  height: { ideal: 720 },
+                  aspectRatio: { ideal: 1 }
+                }}
+                style={{ width: '100%', height: '100%' }}
+              />
+              
+              {/* Red border overlay that fits exactly on top of the video */}
+              <div className="absolute inset-0 border-2 border-red-500 rounded-lg pointer-events-none"></div>
             </div>
           </div>
           

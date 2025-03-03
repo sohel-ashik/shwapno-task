@@ -57,7 +57,7 @@ export default function Dashboard() {
                 Open Scanner
               </button>
             )}
-            
+            {/* {console.log("scannedBarcode",scannedBarcode)} */}
             {scannedBarcode && (
               <ScanResult
                 barcode={scannedBarcode}
