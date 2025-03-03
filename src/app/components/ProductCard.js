@@ -20,7 +20,7 @@ const ProductCard = ({ product }) => {
       style={{ touchAction: 'none' }} // Helps with mobile drag
     >
       <div className="flex justify-between items-start mb-2">
-        <h4 className="font-semibold text-gray-800 truncate flex-1">{product.description}</h4>
+        <h4 className="font-semibold text-gray-800  flex-1">{product.description}</h4>
       </div>
       
       <div className="mt-3 space-y-2">

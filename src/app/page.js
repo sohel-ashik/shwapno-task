@@ -66,20 +66,20 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-6">
-      <h1 className="text-2xl font-bold mb-6">Inventory Management System</h1>
+    <div className="container mx-auto px-4  py-8">
+      <h1 className="text-3xl font-bold mb-8 text-center text-gray-800">Inventory Management System</h1>
       
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         {/* Scanner Section */}
-        <div className="lg:col-span-4 xl:col-span-3 space-y-4">
-          <div className="bg-white p-4 rounded-lg shadow-md">
-            <h2 className="text-xl font-semibold mb-4">Barcode Scanner</h2>
+        <div className="lg:col-span-4 xl:col-span-3 space-y-6">
+          <div className="bg-white p-6 rounded-lg shadow-lg border border-gray-100">
+            <h2 className="text-xl font-semibold mb-5 pb-2 border-b border-gray-100">Barcode Scanner</h2>
             
             {apiError && (
-              <div className="mb-4 p-3 bg-red-50 border border-red-300 text-red-700 rounded-md">
+              <div className="mb-5 p-4 bg-red-50 border border-red-300 text-red-700 rounded-md">
                 <p className="text-sm">{apiError}</p>
                 <button 
-                  className="text-xs text-red-600 underline mt-1"
+                  className="text-xs text-red-600 underline mt-2 hover:text-red-800 transition-colors"
                   onClick={() => setApiError('')}
                 >
                   Dismiss
@@ -95,13 +95,13 @@ export default function Dashboard() {
             ) : (
               <button
                 onClick={() => setShowScanner(true)}
-                className="w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none"
+                className="w-full py-3 px-4 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors duration-200"
                 disabled={isSubmitting}
               >
                 Open Scanner
               </button>
             )}
-            {/* {console.log("scannedBarcode",scannedBarcode)} */}
+            
             {scannedBarcode && (
               <ScanResult
                 barcode={scannedBarcode}
@@ -110,8 +110,8 @@ export default function Dashboard() {
             )}
             
             {isSubmitting && (
-              <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-md flex items-center justify-center">
-                <div className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-blue-600 mr-2"></div>
+              <div className="mt-5 p-4 bg-blue-50 border border-blue-200 rounded-md flex items-center justify-center">
+                <div className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-blue-600 mr-3"></div>
                 <p className="text-sm text-blue-700">Adding product to inventory...</p>
               </div>
             )}
@@ -120,7 +120,7 @@ export default function Dashboard() {
         
         {/* Kanban Board Section */}
         <div className="lg:col-span-8 xl:col-span-9">
-          <div className="bg-white p-4 rounded-lg shadow-md">
+          <div className="bg-white p-6 rounded-lg shadow-lg border border-gray-100 h-full">
             <KanbanBoard products={kanbanProducts} categories={categories} setProducts={setKanbanProducts} setCategories={setCategories} />
           </div>
         </div>

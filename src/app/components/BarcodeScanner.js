@@ -90,7 +90,7 @@ const BarcodeScanner = ({ onScanSuccess, onScanError }) => {
   };
 
   return (
-    <div className="w-full max-w-md mx-auto bg-white rounded-lg shadow-md p-4">
+    <div className="w-full max-w-md mx-auto bg-white rounded-lg shadow-md p-4 overflow-hidden">
       {/* <h2 className="text-xl font-bold mb-4 text-center">Barcode Scanner</h2> */}
       
       {!decodedResult && !isScanning && (
@@ -112,13 +112,13 @@ const BarcodeScanner = ({ onScanSuccess, onScanError }) => {
             </div>
           </div>
           
-          <form onSubmit={handleManualEntrySubmit} className="flex space-x-2">
+          <form onSubmit={handleManualEntrySubmit} className="flex flex-wrap gap-2">
             <input
               type="text"
               value={manualEntry}
               onChange={handleManualEntryChange}
               placeholder="Enter barcode manually"
-              className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
+              className="flex-1 min-w-[60%] px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
               maxLength="13"
               disabled={processing}
             />
@@ -161,7 +161,7 @@ const BarcodeScanner = ({ onScanSuccess, onScanError }) => {
                   height: { ideal: 720 },
                   aspectRatio: { ideal: 1 }
                 }}
-                style={{ width: '100%', height: '100%' }}
+                style={{ width: '100%', height: '100%', maxWidth: '100%' }}
               />
               
               {/* Red border overlay that fits exactly on top of the video */}
@@ -169,17 +169,17 @@ const BarcodeScanner = ({ onScanSuccess, onScanError }) => {
             </div>
           </div>
           
-          <div className="mt-4 flex space-x-2">
+          <div className="mt-4 flex flex-wrap gap-2">
             <button
               onClick={stopScanner}
-              className="flex-1 py-2 px-4 bg-red-600 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 focus:outline-none"
+              className="flex-1 min-w-[40%] py-2 px-4 bg-red-600 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 focus:outline-none"
               disabled={processing}
             >
               Cancel
             </button>
             <button
               onClick={toggleTorch}
-              className="flex-1 py-2 px-4 bg-gray-600 text-white font-semibold rounded-lg shadow-md hover:bg-gray-700 focus:outline-none"
+              className="flex-1 min-w-[40%] py-2 px-4 bg-gray-600 text-white font-semibold rounded-lg shadow-md hover:bg-gray-700 focus:outline-none"
               disabled={processing}
             >
               {torchOn ? 'Turn Off Light' : 'Turn On Light'}
@@ -191,9 +191,9 @@ const BarcodeScanner = ({ onScanSuccess, onScanError }) => {
       {decodedResult && (
         <div className="mt-4 p-4 bg-green-50 border border-green-300 rounded-lg">
           <h3 className="font-semibold text-green-800 mb-2">Barcode Detected:</h3>
-          <p className="text-lg font-mono text-center bg-white p-2 border border-gray-200 rounded mb-4">{decodedResult}</p>
+          <p className="text-lg font-mono text-center bg-white p-2 border border-gray-200 rounded mb-4 break-all">{decodedResult}</p>
           
-          <div className="flex space-x-2">
+          <div className="flex">
             <button
               onClick={handleRetry}
               className="w-full py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none"

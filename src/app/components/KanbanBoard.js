@@ -158,7 +158,7 @@ const KanbanBoard = ({products, categories, setProducts, setCategories }) => {
     };
     
     fetchData();
-  }, []);
+  }, [setCategories, setProducts]);
 
   const handleDrop = async (productId, targetCategory) => {
     // Update local state immediately for responsive UI

@@ -15,7 +15,7 @@ const KanbanColumn = ({ category, products, onDrop }) => {
   return (
     <div
       ref={drop}
-      className={`w-80 flex-shrink-0 bg-gray-100 rounded-lg p-4 flex flex-col h-[calc(100vh-12rem)] ${
+      className={`w-80 flex-shrink-0 bg-gray-100 rounded-lg p-4 flex flex-col  ${
         isOver ? 'bg-blue-50 border-2 border-blue-300' : ''
       }`}
     >
