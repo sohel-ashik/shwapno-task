@@ -1,36 +1,143 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+
+# Inventory Management System
+
+![Inventory Management System](https://i.imgur.com/placeholder.png)
+
+A modern inventory management application built with Next.js, featuring barcode scanning, a Kanban board for product organization, and analytics dashboard.
+
+**Live Demo:** [https://shwapno-task.vercel.app/](https://shwapno-task.vercel.app/)
+
+## Features
+
+### 📊 Analytics Dashboard
+- Visual representation of inventory statistics
+- Category distribution charts
+- Recently added products tracking
+- Real-time inventory overview
+
+### 📱 Barcode Scanning
+- Mobile-friendly barcode scanner
+- Support for multiple barcode formats
+- Manual entry option for damaged barcodes
+- Flashlight toggle for low-light environments
+
+### 📋 Kanban Board
+- Drag-and-drop interface for product organization
+- Dynamic category creation
+- Responsive design for both desktop and mobile
+- Visual status tracking for inventory items
+
+### 🔍 Search Functionality
+- Real-time product filtering
+- Search by product name, barcode, or material ID
+- Category-based filtering
+- Mobile-optimized search results
+
+## Technology Stack
+
+- **Framework**: Next.js 15 (App Router)
+- **Styling**: Tailwind CSS
+- **State Management**: React Hooks
+- **Drag and Drop**: react-dnd
+- **Barcode Scanning**: react-qr-barcode-scanner
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+- Node.js 18.17 or later
+- npm or yarn
 
+### Installation
+
+1. Clone the repository
+```bash
+git clone https://github.com/yourusername/inventory-management.git
+cd inventory-management
+```
+
+2. Install dependencies
+```bash
+npm install
+# or
+yarn install
+```
+
+3. Run the development server
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### Building for Production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm run start
+# or
+yarn build
+yarn start
+```
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+├── app/
+│   ├── components/
+│   │   ├── barcodeSection/     # Barcode scanning components
+│   │   ├── kanban/             # Kanban board components
+│   │   └── utils/              # Utility components (Sidebar, etc.)
+│   ├── dashboard/              # Dashboard page
+│   ├── api/                    # API routes
+│   ├── globals.css             # Global styles
+│   ├── layout.js               # Root layout
+│   └── page.js                 # Home page (Inventory)
+├── ...
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Usage
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Barcode Scanning
+1. Navigate to the inventory page
+2. Click "Open Scanner"
+3. Scan a product barcode or enter it manually
+4. Review the product details and add to inventory
 
-## Deploy on Vercel
+### Kanban Board
+1. Products start in the "Uncategorized" category
+2. Drag products between categories
+3. Create new categories using the "Add Category" button
+4. Organize your inventory based on your workflow
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Analytics Dashboard
+1. Navigate to the Dashboard page
+2. View category distribution and product statistics
+3. Monitor recently added products
+4. Use the search functionality to filter products
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Mobile Responsiveness
+
+The application is fully responsive and optimized for:
+- Desktop browsers
+- Tablets
+- Mobile phones
+
+The Kanban board automatically adjusts to a mobile-friendly view on smaller screens, while maintaining full functionality.
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgements
+
+- Built as part of the Shwapno Task project
+- Icons provided by Lucide React
+- Barcode scanning powered by react-qr-barcode-scanner
+
+---
+
+© 2025 Sohel Ashik

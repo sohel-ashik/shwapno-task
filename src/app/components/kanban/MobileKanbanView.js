@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import ProductCard from './ProductCard';
+import ProductCard from '../utils/ProductCard';
 
 const MobileKanbanView = ({ categories, products, onDrop }) => {
   const [activeCategory, setActiveCategory] = useState(categories[0] || 'Uncategorized');

@@ -124,7 +124,7 @@ const Sidebar = () => {
         <div className="px-3 py-4 border-t dark:border-gray-700">
           {!collapsed && (
             <p className="text-xs text-center text-gray-500 dark:text-gray-400">
-              © 2024 Shwapno Task
+              © 2025 Sohel Ashik
             </p>
           )}
         </div>

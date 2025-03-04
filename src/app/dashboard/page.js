@@ -202,7 +202,7 @@ export default function Dashboard() {
           </div>
           
           <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200">
+            <table className="min-w-full mx-w-full divide-y divide-gray-200">
               <thead>
                 <tr>
                   <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Product</th>
@@ -263,7 +263,32 @@ export default function Dashboard() {
         
         {filteredProducts.length > 0 ? (
           <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200">
+            <div className="block md:hidden">
+              <div className="space-y-4">
+                {filteredProducts.map((product) => (
+                  <div key={product._id} className="bg-white rounded-lg shadow p-4 border border-gray-200">
+                    <div className="mb-2">
+                      <h3 className="text-sm font-medium text-gray-900">{product.description}</h3>
+                      <span className="mt-1 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                        {product.category}
+                      </span>
+                    </div>
+                    <div className="grid grid-cols-2 gap-2 text-xs text-gray-500">
+                      <div>
+                        <p className="font-medium text-gray-700">Barcode:</p>
+                        <p>{product.barcode}</p>
+                      </div>
+                      <div>
+                        <p className="font-medium text-gray-700">Material ID:</p>
+                        <p>{product.material}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            <table className="hidden md:table min-w-full divide-y divide-gray-200">
               <thead>
                 <tr>
                   <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Product</th>

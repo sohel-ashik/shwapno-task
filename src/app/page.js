@@ -1,9 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import BarcodeScanner from './components/BarcodeScanner';
-import ScanResult from './components/ScanResult';
-import KanbanBoard from './components/KanbanBoard';
+import BarcodeScanner from './components/barcodeSection/BarcodeScanner';
+import ScanResult from './components/barcodeSection/ScanResult';
+import KanbanBoard from './components/kanban/KanbanBoard';
 
 export default function Dashboard() {
   const [scannedBarcode, setScannedBarcode] = useState('');
@@ -29,6 +29,17 @@ export default function Dashboard() {
   const handleAddToInventory = async (product) => {
     setIsSubmitting(true);
     setApiError('');
+    
+    // Check if product already exists in kanbanProducts
+    const productExists = kanbanProducts.some(
+      existingProduct => existingProduct.barcode === product.barcode
+    );
+    
+    if (productExists) {
+      setApiError('Product is already in inventory');
+      setIsSubmitting(false);
+      return;
+    }
     
     try {
       const response = await fetch('https://shwapno-task-backend.vercel.app/api/products', {
@@ -104,6 +115,7 @@ export default function Dashboard() {
             
             {scannedBarcode && (
               <ScanResult
+                setScannedBarcode={setScannedBarcode}
                 barcode={scannedBarcode}
                 onAddToInventory={handleAddToInventory}
               />

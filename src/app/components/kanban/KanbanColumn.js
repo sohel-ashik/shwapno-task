@@ -1,7 +1,7 @@
 'use client';
 
 import { useDrop } from 'react-dnd';
-import ProductCard from './ProductCard';
+import ProductCard from '../utils/ProductCard';
 
 const KanbanColumn = ({ category, products, onDrop }) => {
   const [{ isOver }, drop] = useDrop({

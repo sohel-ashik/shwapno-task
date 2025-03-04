@@ -1,5 +1,6 @@
 'use client';
 
+import { Flashlight, FlashlightOff } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
 import BarcodeScannerComponent from 'react-qr-barcode-scanner';
 
@@ -182,7 +183,16 @@ const BarcodeScanner = ({ onScanSuccess, onScanError }) => {
               className="flex-1 min-w-[40%] py-2 px-4 bg-gray-600 text-white font-semibold rounded-lg shadow-md hover:bg-gray-700 focus:outline-none"
               disabled={processing}
             >
-              {torchOn ? 'Turn Off Light' : 'Turn On Light'}
+              {torchOn ? (
+                <>
+                  <Flashlight className="w-4 h-4 mr-1 inline" />
+                </>
+              ) : (
+                <>
+                  <FlashlightOff className="w-4 h-4 mr-1 inline" />
+
+                </>
+              )}
             </button>
           </div>
         </div>

@@ -1,8 +1,9 @@
 'use client';
 
+import { X, XCircle } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
-const ScanResult = ({ barcode, onAddToInventory }) => {
+const ScanResult = ({ barcode, onAddToInventory, setScannedBarcode }) => {
   const [loading, setLoading] = useState(false);
   const [product, setProduct] = useState(null);
   const [error, setError] = useState('');
@@ -90,7 +91,7 @@ const ScanResult = ({ barcode, onAddToInventory }) => {
 
   if (error && !product) {
     return (
-      <div className="w-full max-w-md mx-auto bg-red-50 p-4 rounded-lg">
+      <div className="w-full max-w-md mx-auto mt-3 bg-red-50 p-4 rounded-lg">
         <h3 className="text-lg font-semibold text-red-700 mb-2">Error</h3>
         <p className="text-red-600 mb-4">{error}</p>
         
@@ -110,7 +111,15 @@ const ScanResult = ({ barcode, onAddToInventory }) => {
 
   return (
     <div className="w-full max-w-md mx-auto bg-white rounded-lg shadow-md p-6 mt-4">
-      <h3 className="text-lg font-semibold mb-3">Scan Result</h3>
+      <div className="flex justify-between items-center mb-3">
+        <h3 className="text-lg font-semibold">Scan Result</h3>
+        <button 
+          onClick={() => setScannedBarcode('')} 
+          className="p-2 bg-red-500 text-white rounded-full hover:bg-red-600 focus:outline-none"
+        >
+          <XCircle size={5}  />
+        </button>
+      </div>
       
       <div className="space-y-2 mb-4">
         <div className="flex justify-between">
