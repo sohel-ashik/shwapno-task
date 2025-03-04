@@ -52,8 +52,8 @@ A modern inventory management application built with Next.js, featuring barcode 
 
 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/inventory-management.git
-cd inventory-management
+[git clone https://github.com/yourusername/inventory-management.git](https://github.com/sohel-ashik/shwapno-task.git)
+cd shwapno-task
 ```
 
 2. Install dependencies
